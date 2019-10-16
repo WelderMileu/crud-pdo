@@ -2,6 +2,7 @@
 
 ` Pendencias `
 
-- [	] Fazer parte de editar dados
-- [	] Fazer a parte de deletar dados
-- [x] Fazer o formulario de inserir dados
+- [	] Fazer parte de editar dados.
+- [	] Fazer a parte de deletar dados.
+- [x] Fazer o formulario de inserir dados.
+- [ ] Fazer o nosso formulario de cadastro funcionar.

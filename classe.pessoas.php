@@ -4,7 +4,7 @@
 
 		private $pdo;
 
-		// Contructor com conexão ao Banco de Dados
+		// Contructor fazendo conexão ao nosso Banco de Dados
 		public function __construct($host, $dbname, $user, $password){
 			try {
 				$this->pdo = new PDO("mysql:host=".$host.";dbname=".$dbname,$user, $password);
@@ -15,7 +15,7 @@
 			}
 		}
 
-		// Mostrando dados na tela
+		// Chamdando os dados da nossa base de dados.
 		public function mostrarDados(){
 			try{
 				$most = array();
@@ -30,14 +30,19 @@
 
 		//Cadastrado de um novo usuario
 		public function cadastrarUsuario($nome, $numero, $email){
-			$cmd = $this->pdo->prepare("INSERT INTO pessoas (nome, numero, email) values (:n ,:nu, :e)");
+			try {
+				$cmd = $this->pdo->prepare("INSERT INTO pessoas (nome, numero, email) values(':n',':nu',':e')");
 
-			$cmd->bindValue(":n", $nome);
-			$cmd->bindValue(":nu", $numero);
-			$cmd->bindValue(":e", $email);
-			$cmd->execute();
+				$cmd->bindValue(":n", $nome);
+				$cmd->bindValue(":nu", $numero);
+				$cmd->bindValue(":e", $email);
+				$cmd->execute();
 
-			return true;
+			} catch (PDOException $e) {
+				echo "Erro PDO: ".$e->getMessage();
+			} catch (Exeption $e){
+				echo "Erro Generico :".$e->getMessage();
+			}
 		}
 	}
 
